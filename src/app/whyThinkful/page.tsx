@@ -10,7 +10,7 @@ export default function WhyThinkful() {
         background: "linear-gradient(to right, #91a3d2, #1e293b, #0f172a)",
       }}
     >
-      <div className="max-w-7xl mx-auto relative">
+      <div className="max-w-7xl min-h-full mx-auto relative">
         <div className="flex flex-col lg:flex-row items-start lg:items-center gap-8 lg:gap-12">
           {/* Left Side - Title and Link */}
           <div className="flex-shrink-0 space-y-6">

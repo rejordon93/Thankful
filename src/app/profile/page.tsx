@@ -1,15 +1,12 @@
 "use client";
 import React, { useState } from "react";
 import MyAccount from "./components/MyAccount";
-import Footer from "../components/Footer";
-import NavBar from "../components/NavBar";
 
 export default function Profile() {
   const [activeTab, setActiveTab] = useState<"profile" | "account">("profile");
 
   return (
     <div className="max-w-3xl mx-auto p-6 bg-gray-50 min-h-screen space-y-6">
-      <NavBar />
       {/* Header */}
       <div className="bg-white shadow rounded-lg p-6 text-center">
         <h1 className="text-3xl font-bold text-gray-900">Ethan Jordon</h1>
@@ -77,8 +74,6 @@ export default function Profile() {
 
         {activeTab === "account" && <MyAccount />}
       </div>
-
-      <Footer />
     </div>
   );
 }

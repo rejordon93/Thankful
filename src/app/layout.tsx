@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { AppProvider } from "@/context/context";
+
+import Footer from "@/app/components/Footer";
+
 import "./globals.css";
 
 import { Petit_Formal_Script } from "next/font/google";
@@ -32,9 +36,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={petitFormalScript.className}>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} min-h-screen bg-zinc-100 text-zinc-800  ${geistMono.variable} antialiased`}
       >
-        {children}
+        <AppProvider>
+          {children}
+          <Footer />
+        </AppProvider>
       </body>
     </html>
   );

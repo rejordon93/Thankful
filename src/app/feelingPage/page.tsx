@@ -47,7 +47,7 @@ export default function FeelingPage() {
   ];
 
   return (
-    <div className="relative min-h-screen px-6 py-12 overflow-hidden bg-black text-white">
+    <div className="relative min-h-[50vh] px-6 py-24 overflow-hidden bg-black text-white">
       {/* Stars Background */}
       <div className="absolute inset-0 bg-black z-0">
         <div className="absolute inset-0 animate-stars">
