@@ -47,8 +47,15 @@ export async function POST(req: NextRequest) {
       username: user.username,
       email: user.email,
     });
+
     // set cookies
-    response.cookies.set("token", token, { httpOnly: true });
+    response.cookies.set("token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+      maxAge: 60 * 60 * 24,
+      path: "/",
+    });
 
     return response;
   } catch (error: unknown) {

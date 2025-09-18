@@ -3,17 +3,18 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import axios from "axios";
 import { petitFormalScript } from "@/fonts/fonts";
+import { UserNavType } from "@/types/types";
 
 export default function NavBar() {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [user, setUser] = useState<UserNavType | null>(null);
 
   useEffect(() => {
     const loginCheck = async () => {
       try {
-        const res = await axios.get("/api/login", { withCredentials: true });
-        setIsLoggedIn(!!res.data?.token);
+        const res = await axios.get("/api/authUser", { withCredentials: true });
+        setUser(res.data.user || null);
       } catch {
-        setIsLoggedIn(false);
+        setUser(null);
       }
     };
     loginCheck();
@@ -21,7 +22,7 @@ export default function NavBar() {
 
   return (
     <nav className="relative min-h-[96px] px-6 py-6 overflow-hidden">
-      {/* Stars Background */}
+      {/* Background Stars */}
       <div className="absolute inset-0 z-0 bg-black">
         {[...Array(50)].map((_, i) => (
           <div
@@ -59,7 +60,7 @@ export default function NavBar() {
 
         {/* Links */}
         <ul className="flex items-center space-x-6">
-          {isLoggedIn ? (
+          {user ? (
             <>
               <li>
                 <Link
@@ -74,7 +75,7 @@ export default function NavBar() {
                   href="/myAccount"
                   className="text-white hover:text-blue-400"
                 >
-                  My Account
+                  About
                 </Link>
               </li>
               <li>
@@ -87,11 +88,13 @@ export default function NavBar() {
               </li>
             </>
           ) : (
-            <li>
-              <Link href="/login" className="text-white hover:text-blue-400">
-                Login
-              </Link>
-            </li>
+            <>
+              <li>
+                <Link href="/login" className="text-white hover:text-blue-400">
+                  Login
+                </Link>
+              </li>
+            </>
           )}
         </ul>
       </div>
